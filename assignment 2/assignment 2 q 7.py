@@ -21,24 +21,16 @@ Assume all input variables t, s, u are positive integers .
 Print the color to be displayed at the end."""
 
 t = int(input("Time:"))
-while True:
-    s = int(input("Switching time:"))
-    u = int(input("Transition time:"))
-    t = int(input("Time:"))
-    t = t % (2*s + 2*u)
 
-    """if 0 <= t < s:
+s = int(input("Switching time:"))
+u = int(input("Transition time:"))
+t = int(input("Time:"))
+
+t = t % (2*s + 2*u)
+
+if t < s:
         print("red")
-    elif t < s + u:
-        print("yellow")
-    elif t < 2*s + u:
+elif s + u <= t < 2*s + u:
         print("green")
-    else:
-        print("yellow")
-    """
-    if t < s:
-        print("red")
-    elif s + u <= t < 2*s + u:
-        print("green")
-    else:
+else:
         print("yellow")
