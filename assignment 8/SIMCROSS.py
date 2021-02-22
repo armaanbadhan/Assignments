@@ -1,4 +1,4 @@
-from pprint import pprint
+# from pprint import pprint
 
 n, m = map(int, input().strip().split())
 
@@ -110,7 +110,7 @@ pprint(occupiedv)
 
 # print(words)
 
-res = []
+resh = []
 
 
 i = 0
@@ -136,9 +136,71 @@ while i < n:
         else:
             temp.append('-')
             j += 1
-    res.append(''.join(temp))
+    resh.append(''.join(temp))
     i += 1
 
-pprint(res)
+# pprint(resh)
+# pprint(cross)
 
-#-------------------INCOMLETE----------------------
+resv = []
+
+i = 0
+while i < m:
+    j = 0
+    temp = []
+    while j < n:
+        ele = cross[j][i]
+        if ele == '#':
+            temp.append('#')
+            j += 1
+        elif ele == 'b' or ele == 'c':
+            for k in verticle_x_y_start:
+                if k[0] == j and k[1] == i:
+                    leng = k[2]
+                    verticle_x_y_start.remove([j, i, leng])
+                    char_cnt = 0
+                    while char_cnt < leng:
+                        temp.append(words[leng][char_cnt])
+                        j += 1
+                        char_cnt += 1
+                    del words[leng]
+        else:
+            temp.append('-')
+            j += 1
+    resv.append(''.join(temp))
+    i += 1
+
+# pprint(resv)
+
+transversed = []
+
+for i in range(n):
+    temp = []
+    for j in range(m):
+        temp.append(resv[j][i])
+    transversed.append(''.join(temp))
+
+# pprint(transversed)
+
+
+res = []
+
+for i in range(n):
+    temp_res = []
+    for j in range(m):
+        hh = resh[i][j]
+        vv = transversed[i][j]
+        if hh == vv:
+            temp_res.append(hh)
+        elif (hh == '-') and (vv in "qwertyuiopasdfghjklzxcvbnm"):
+            temp_res.append(vv)
+        elif (vv == '-') and (hh in "qwertyuiopasdfghjklzxcvbnm"):
+            temp_res.append(hh)
+        else:
+            print('Invalid')
+            exit()
+    res.append(''.join(temp_res))
+
+
+for i in res:
+    print(i)
