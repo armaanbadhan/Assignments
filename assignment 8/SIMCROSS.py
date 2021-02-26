@@ -1,4 +1,3 @@
-# from pprint import pprint
 
 n, m = map(int, input().strip().split())
 
@@ -16,7 +15,6 @@ for i in range(w):
     words[len(x)] = x
 
 horizontal_x_y_start = []
-horizontal_x_y_cnt = []
 
 for i in range(n):
     cnt = 0
@@ -28,37 +26,13 @@ for i in range(n):
                 horizontal_x_y_start.append([i, j])
                 flag = True
             else:
-                horizontal_x_y_cnt.append([i, j, cnt])
+                horizontal_x_y_start[-1].append(cnt)
                 cnt = 0
                 flag = False
         elif flag and (cross[i][j] == '.' or cross[i][j] == 'c'):
             cnt += 1
 
-# pprint(horizontal_x_y_start)
-# pprint(horizontal_x_y_cnt)
-
-
-for i in range(len(horizontal_x_y_start)):
-    horizontal_x_y_start[i].append(horizontal_x_y_cnt[i][2])
-
-# pprint(horizontal_x_y_start)
-# pprint(horizontal_x_y_cnt)
-
-
-'''
-transversed = []
-
-for i in range(m):
-    temp = []
-    for j in range(n):
-        temp.append(cross[j][i])
-    transversed.append(''.join(temp))
-
-pprint(transversed)
-'''
-
 verticle_x_y_start = []
-verticle_x_y_cnt = []
 
 for i in range(m):
     cnt = 0
@@ -70,48 +44,14 @@ for i in range(m):
                 verticle_x_y_start.append([j, i])
                 flag = True
             else:
-                verticle_x_y_cnt.append([j, i, cnt])
+                verticle_x_y_start[-1].append(cnt)
                 cnt = 0
                 flag = False
         elif flag and (cross[j][i] == '.' or cross[j][i] == 'r'):
             cnt += 1
 
 
-
-for i in range(len(verticle_x_y_start)):
-    verticle_x_y_start[i].append(verticle_x_y_cnt[i][2])
-
-
-# pprint(verticle_x_y_start)
-# pprint(verticle_x_y_cnt)
-
-# pprint(words)
-
-'''
-occupiedh = []
-occupiedv = []
-
-for i in range(len(horizontal_x_y_start)):
-    x, y = horizontal_x_y_start[i]
-    while y <= horizontal_x_y_cnt[i][1]:
-        occupiedh.append(((x, y), horizontal_x_y_cnt[i][2]))
-        y += 1
-
-
-for i in range(len(verticle_x_y_start)):
-    x, y = verticle_x_y_start[i]
-    while x <= verticle_x_y_cnt[i][0]:
-        occupiedv.append(((x, y), verticle_x_y_cnt[i][2]))
-        x += 1
-
-pprint(occupiedh)
-pprint(occupiedv)
-'''
-
-# print(words)
-
 resh = []
-
 
 i = 0
 while i < n:
@@ -139,8 +79,6 @@ while i < n:
     resh.append(''.join(temp))
     i += 1
 
-# pprint(resh)
-# pprint(cross)
 
 resv = []
 
@@ -170,7 +108,6 @@ while i < m:
     resv.append(''.join(temp))
     i += 1
 
-# pprint(resv)
 
 transversed = []
 
@@ -179,8 +116,6 @@ for i in range(n):
     for j in range(m):
         temp.append(resv[j][i])
     transversed.append(''.join(temp))
-
-# pprint(transversed)
 
 
 res = []
@@ -200,7 +135,6 @@ for i in range(n):
             print('Invalid')
             exit()
     res.append(''.join(temp_res))
-
 
 for i in res:
     print(i)
