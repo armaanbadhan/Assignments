@@ -1,3 +1,3 @@
 n = int(input())
-l = [1]*n
+l = [0]*n
 print(*l)
